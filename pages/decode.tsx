@@ -4,7 +4,7 @@ import { QrReader } from 'react-qr-reader'
 import { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import { decompressProof, exampleProof, verifyProof } from '@/utils'
-import { AnonAadhaarPCD } from 'anon-aadhaar-pcd'
+import  { AnonAadhaarCore }  from '@anon-aadhaar/core'
 
 enum PageState {
 	scanning,
@@ -14,7 +14,7 @@ enum PageState {
 
 const Index = () => {
 	const [qrResult, setQrResult] = useState<string>()
-	const [decompressed, setDecompressed] = useState<AnonAadhaarPCD>()
+	const [decompressed, setDecompressed] = useState<AnonAadhaarCore>()
 	const [pageState, setPageState] = useState<PageState>(PageState.scanning)
 	const [proofVerifiedRes, setProofVerifiedRes] = useState<boolean>()
 

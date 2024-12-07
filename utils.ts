@@ -1,9 +1,11 @@
-import { AnonAadhaarPCD, BigNumberish, exportCallDataGroth16FromPCD } from 'anon-aadhaar-pcd'
+import { AnonAadhaarCore, BigNumberish, verify } from '@anon-aadhaar/core'
 import pako from 'pako'
 import { createPublicClient, getContract, http } from 'viem'
-import { celoAlfajores } from 'viem/chains'
+import {  polygonZkEvmTestnet } from 'viem/chains'
+// import from '@anon-aadhaar/contracts'
+// import { exportCallDataGroth16FromPCD } from 'anon-aadhaar-pcd'
 
-export const compressProof = (proof: AnonAadhaarPCD) => {
+export const compressProof = (proof: AnonAadhaarCore) => {
 	// Convert JSON data to string
 	const jsonString = JSON.stringify(proof)
 
@@ -136,22 +138,15 @@ const CONTRACT_ABI = [
 	},
 ]
 
-const CONTRACT_ADDRESS = '0x8910502d1B0935802798829097E4F36Fe251eA06'
+const CONTRACT_ADDRESS = '0x84ad752Bd23f934CfDC91Bf8fF027f9A3aF8aC83'
 
-export const verifyProof = async (proof: AnonAadhaarPCD) => {
+export const verifyProof = async (proof: AnonAadhaarCore) => {
 	const client = createPublicClient({
-		chain: celoAlfajores,
+		chain: polygonZkEvmTestnet,
 		transport: http(),
 	})
 
-	const { a, b, c, Input } = await exportCallDataGroth16FromPCD(proof)
-
-	const res = await client.readContract({
-		address: CONTRACT_ADDRESS,
-		abi: CONTRACT_ABI,
-		functionName: 'verifyProof',
-		args: [a, b, c, Input],
-	})
+	const res = await verify(exampleProof)
 
 	return res as boolean;
 }

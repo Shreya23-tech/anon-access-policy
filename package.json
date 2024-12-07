@@ -9,11 +9,11 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@anon-aadhaar/react": "^2.4.2",
+		"@anon-aadhaar/core": "^2.4.2",
 		"@heroicons/react": "^2.0.18",
 		"@lighthouse-web3/sdk": "^0.3.0",
 		"@web3modal/wagmi": "^3.4.0",
-		"anon-aadhaar-pcd": "^0.1.14",
-		"anon-aadhaar-react": "^0.1.14",
 		"framer-motion": "^10.16.16",
 		"next": "13.5.4",
 		"next-pwa": "^5.6.0",
